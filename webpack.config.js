@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/js/index.js',
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    port: 3000
   },
   devtool: process.env.NODE_ENV === 'production' ? false : 'cheap-eval-source-map',
   plugins: [

@@ -1,95 +1,151 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>梦幻西游-慈心渡鬼-善恶棋</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css">
   <style>
-    *{
-      box-sizing: border-box;
-    }
-    body{
-      margin: 0;
-    }
     #chessboard{
       display: grid;
+      flex-shrink: 0;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
       width: 100vmin;
       height: 100vmin;
+      padding: 10px;
+      background: #ddd;
     }
     #chessboard > div{
       border: 1px solid #000;
     }
+    .cp_black{
+      background: #000;
+    }
+    .cp_white{
+      background: #fff;
+    }
   </style>
 </head>
+
 <body>
-  <div id="chessboard">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+  <div class="d-flex">
+    <div id="chessboard">
+      <div data-i="0" data-j="0"></div>
+      <div data-i="0" data-j="1"></div>
+      <div data-i="0" data-j="2"></div>
+      <div data-i="0" data-j="3"></div>
+      <div data-i="0" data-j="4"></div>
+      <div data-i="0" data-j="5"></div>
+      <div data-i="0" data-j="6"></div>
+      <div data-i="0" data-j="7"></div>
+      <div data-i="1" data-j="0"></div>
+      <div data-i="1" data-j="1"></div>
+      <div data-i="1" data-j="2"></div>
+      <div data-i="1" data-j="3"></div>
+      <div data-i="1" data-j="4"></div>
+      <div data-i="1" data-j="5"></div>
+      <div data-i="1" data-j="6"></div>
+      <div data-i="1" data-j="7"></div>
+      <div data-i="2" data-j="0"></div>
+      <div data-i="2" data-j="1"></div>
+      <div data-i="2" data-j="2"></div>
+      <div data-i="2" data-j="3"></div>
+      <div data-i="2" data-j="4"></div>
+      <div data-i="2" data-j="5"></div>
+      <div data-i="2" data-j="6"></div>
+      <div data-i="2" data-j="7"></div>
+      <div data-i="3" data-j="0"></div>
+      <div data-i="3" data-j="1"></div>
+      <div data-i="3" data-j="2"></div>
+      <div data-i="3" data-j="3"></div>
+      <div data-i="3" data-j="4"></div>
+      <div data-i="3" data-j="5"></div>
+      <div data-i="3" data-j="6"></div>
+      <div data-i="3" data-j="7"></div>
+      <div data-i="4" data-j="0"></div>
+      <div data-i="4" data-j="1"></div>
+      <div data-i="4" data-j="2"></div>
+      <div data-i="4" data-j="3"></div>
+      <div data-i="4" data-j="4"></div>
+      <div data-i="4" data-j="5"></div>
+      <div data-i="4" data-j="6"></div>
+      <div data-i="4" data-j="7"></div>
+      <div data-i="5" data-j="0"></div>
+      <div data-i="5" data-j="1"></div>
+      <div data-i="5" data-j="2"></div>
+      <div data-i="5" data-j="3"></div>
+      <div data-i="5" data-j="4"></div>
+      <div data-i="5" data-j="5"></div>
+      <div data-i="5" data-j="6"></div>
+      <div data-i="5" data-j="7"></div>
+      <div data-i="6" data-j="0"></div>
+      <div data-i="6" data-j="1"></div>
+      <div data-i="6" data-j="2"></div>
+      <div data-i="6" data-j="3"></div>
+      <div data-i="6" data-j="4"></div>
+      <div data-i="6" data-j="5"></div>
+      <div data-i="6" data-j="6"></div>
+      <div data-i="6" data-j="7"></div>
+      <div data-i="7" data-j="0"></div>
+      <div data-i="7" data-j="1"></div>
+      <div data-i="7" data-j="2"></div>
+      <div data-i="7" data-j="3"></div>
+      <div data-i="7" data-j="4"></div>
+      <div data-i="7" data-j="5"></div>
+      <div data-i="7" data-j="6"></div>
+      <div data-i="7" data-j="7"></div>
+    </div>
+    <div class="container">
+      <h1>梦幻西游-慈心渡鬼-善恶棋</h1>
+      <ul>
+        <li>
+          <label for="">开局</label>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-primary active">
+              <input type="radio" name="opening" data-type="0" autocomplete="off" checked> 正
+            </label>
+            <label class="btn btn-outline-primary">
+              <input type="radio" name="opening" data-type="1" autocomplete="off"> 反
+            </label>
+          </div>
+        </li>
+        <li>
+          <label for="">设置</label>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-primary">
+              <input type="radio" name="setting" data-type="chests" autocomplete="off"> 宝箱
+            </label>
+            <label class="btn btn-outline-primary">
+              <input type="radio" name="setting" data-type="like" autocomplete="off"> 想去
+            </label>
+            <label class="btn btn-outline-primary">
+              <input type="radio" name="setting" data-type="dislike" autocomplete="off"> 不想去
+            </label>
+          </div>
+        </li>
+        <li>
+          <button type="button" class="btn btn-outline-primary">摆盘</button>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-primary">
+              <input type="radio" name="setting" data-type="1" autocomplete="off"> 白
+            </label>
+            <label class="btn btn-outline-primary">
+              <input type="radio" name="setting" data-type="n1" autocomplete="off"> 黑
+            </label>
+            <label class="btn btn-outline-primary">
+              <input type="radio" name="setting" data-type="clear" autocomplete="off"> 清除
+            </label>
+            <label class="btn btn-outline-primary">
+              <input type="radio" name="setting" data-type="finish" autocomplete="off"> 完成
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </body>
+
 </html>

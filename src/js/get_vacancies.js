@@ -11,7 +11,7 @@ export default (chessboard, chess_piece_type) => {
       if (d) continue;
 
       // 对每个位置广度优先搜索
-      var eight_directions = get_eight_directions(chessboard, i, j, 1);
+      var eight_directions = get_eight_directions(chessboard, i, j, chess_piece_type);
       for (let boom = 2; boom < 8; boom++) {
         if (eight_directions.every(d => {
             return d === false;
@@ -23,8 +23,9 @@ export default (chessboard, chess_piece_type) => {
           if(d){
             var i2 = i + boom * directions[d_index][0],
               j2 = j + boom * directions[d_index][1];
-            if (!(i2 > 0 && i2 < 8) || !(j2 > 0 && j2 < 8) || chessboard[i2][j2] == 0) {
+            if ((i2 < 0 || i2 > 7) || (j2 < 0 || j2 > 7) || chessboard[i2][j2] == 0) {
               eight_directions[d_index] = false;
+              continue;
             }
             if (chessboard[i2][j2] == chess_piece_type) {
               vacancies.push([i, j]);

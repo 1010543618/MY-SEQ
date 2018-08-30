@@ -4,8 +4,10 @@ export default (chessboard, vacancy, direction, num) => {
     j = vacancy[1],
     idir = directions[direction][0],
     jdir = directions[direction][1];
-    
-  for (let index = 0; index < num; index++) {
-    chessboard[i + num * idir][j + num * jdir] = -chessboard[i + num * idir][j + num * jdir];
+
+  for (let n = 1; n <= num; n++) {
+    i = i + n * idir;
+    j = j + n * jdir;
+    chessboard[i][j] = -chessboard[i][j];
   }
 }

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --mode development",
     "clean": "shx rm -rf ./dist",
     "build": "npm run clean && cross-env NODE_ENV=\"production\" webpack"
   },
@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "cross-env": "^5.2.0",
+    "jquery": "^3.3.1",
     "shx": "^0.3.2",
     "webpack-dev-server": "^3.1.6"
   }
