@@ -17,15 +17,28 @@
       height: 100vmin;
       padding: 10px;
       background: #ddd;
+      font-size: 0rem;
+      text-align: center;
+    }
+    @media screen and (min-width: 500px){
+      #chessboard{
+        font-size: 0.3rem;
+      }
     }
     #chessboard > div{
       border: 1px solid #000;
     }
-    .cp_black{
+    .cp-black{
       background: #000;
     }
-    .cp_white{
+    .cp-white{
       background: #fff;
+    }
+    .cp-cur{
+      border: 3px solid pink !important;
+    }
+    .vacancy-can-put{
+      background: #666;
     }
   </style>
 </head>
