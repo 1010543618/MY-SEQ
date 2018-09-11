@@ -183,19 +183,13 @@
           </div>
         </li>
         <li class="list-group-item">
-          <label for="">摆盘</label>
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary">
-              <input type="radio" name="setting" data-type="1" autocomplete="off"> 白
-            </label>
-            <label class="btn btn-outline-primary">
-              <input type="radio" name="setting" data-type="n1" autocomplete="off"> 黑
-            </label>
-            <label class="btn btn-outline-primary">
-              <input type="radio" name="setting" data-type="clear" autocomplete="off"> 清除
-            </label>
+          <label for="">设置</label>
+          <div class="btn-group">
+            <button class="btn btn-outline-primary" name="cb-setting" data-type="1">白</button>
+            <button class="btn btn-outline-primary" name="cb-setting" data-type="-1">黑</button>
+            <button class="btn btn-outline-primary" name="cb-setting" data-type="0">清除</button>
           </div>
-          <button class="btn btn-outline-primary">完成</button>
+          <button id="" class="btn btn-outline-primary">完成</button>
         </li>
       </ul>
     </div>

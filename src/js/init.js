@@ -56,6 +56,18 @@ export default $(() => {
         }
         $(cur).toggleClass('vacancy-dislike');
         break;
+      case "1":
+        $(cur).addClass('cp-white').removeClass('cp-black');
+        chessboard[i, j] = 1;
+        break;
+      case "-1":
+        $(cur).addClass('cp-black').removeClass('cp-white');
+        chessboard[i, j] = -1;
+        break;
+      case "0":
+        $(cur).removeClass('cp-white cp-black');
+        chessboard[i, j] = 0;
+        break;
       default:
         if ($(cur).hasClass('vacancy-can-put')) {
           put_chess_piece(chessboard, [i, j], -1);
@@ -65,7 +77,6 @@ export default $(() => {
           $cell.removeClass("cp-cur").eq(best_vacancy[0] * 8 + best_vacancy[1]).addClass("cp-cur");
           set_chessboard_ui($cell, chessboard);
         }
-
     }
     console.log(weightboard);
 
@@ -94,4 +105,22 @@ export default $(() => {
       window.CUR_TYPE = type;
     }
   })
+
+  $('button[name=cb-setting]').click((e) => {
+    var cur = e.currentTarget,
+      type = cur.dataset.type;
+
+    if (!$(cur).hasClass('active')) {
+      if (!['1', '-1', '0'].find(d => {
+          return d == window.CUR_TYPE;
+        })) {
+        $cell.removeClass("vacancy-can-put cp-cur");
+      } else {
+        $(cur).siblings().removeClass('active');
+      }
+      $(cur).addClass('active');
+      window.CUR_TYPE = type;
+    }
+  })
+
 })
