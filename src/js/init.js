@@ -20,11 +20,7 @@ export default $(() => {
 
   set_cell_text($cell);
 
-  var best_vacancy = get_best_vacancy(weightboard, get_vacancies(chessboard, 1))
-  put_chess_piece(chessboard, best_vacancy, 1);
-  $cell.removeClass("cp-cur").eq(best_vacancy[0] * 8 + best_vacancy[1]).addClass("cp-cur");
-  set_chessboard_ui($cell, chessboard);
-
+  _put_white_cp();
 
   $chessboard.on("click", "> div", (e) => {
     var cur = e.currentTarget,
@@ -58,24 +54,20 @@ export default $(() => {
         break;
       case "1":
         $(cur).addClass('cp-white').removeClass('cp-black');
-        chessboard[i, j] = 1;
+        chessboard[i][j] = 1;
         break;
       case "-1":
         $(cur).addClass('cp-black').removeClass('cp-white');
-        chessboard[i, j] = -1;
+        chessboard[i][j] = -1;
         break;
       case "0":
         $(cur).removeClass('cp-white cp-black');
-        chessboard[i, j] = 0;
+        chessboard[i][j] = 0;
         break;
       default:
         if ($(cur).hasClass('vacancy-can-put')) {
           put_chess_piece(chessboard, [i, j], -1);
-
-          var best_vacancy = get_best_vacancy(weightboard, get_vacancies(chessboard, 1));
-          put_chess_piece(chessboard, best_vacancy, 1);
-          $cell.removeClass("cp-cur").eq(best_vacancy[0] * 8 + best_vacancy[1]).addClass("cp-cur");
-          set_chessboard_ui($cell, chessboard);
+          _put_white_cp();
         }
     }
     console.log(weightboard);
@@ -88,10 +80,7 @@ export default $(() => {
 
     chessboard = init_chessboard(type);
 
-    var best_vacancy = get_best_vacancy(weightboard, get_vacancies(chessboard, 1))
-    put_chess_piece(chessboard, best_vacancy, 1);
-    $cell.removeClass("cp-cur").eq(best_vacancy[0] * 8 + best_vacancy[1]).addClass("cp-cur");
-    set_chessboard_ui($cell, chessboard);
+    _put_white_cp();
   })
 
   $('button[name=setting]').click((e) => {
@@ -110,17 +99,21 @@ export default $(() => {
     var cur = e.currentTarget,
       type = cur.dataset.type;
 
-    if (!$(cur).hasClass('active')) {
-      if (!['1', '-1', '0'].find(d => {
-          return d == window.CUR_TYPE;
-        })) {
-        $cell.removeClass("vacancy-can-put cp-cur");
-      } else {
-        $(cur).siblings().removeClass('active');
-      }
-      $(cur).addClass('active');
-      window.CUR_TYPE = type;
-    }
+    $cell.removeClass("vacancy-can-put cp-cur");
+    $(cur).addClass('active').siblings().removeClass('active');
+    window.CUR_TYPE = type;
   })
 
+  $('#finish-cb-setting').click((e) => {
+    $('button[name=cb-setting]').removeClass('active');
+    window.CUR_TYPE = null;
+    _put_white_cp();
+  })
+
+  function _put_white_cp() {
+    var best_vacancy = get_best_vacancy(weightboard, get_vacancies(chessboard, 1))
+    put_chess_piece(chessboard, best_vacancy, 1);
+    $cell.removeClass("cp-cur").eq(best_vacancy[0] * 8 + best_vacancy[1]).addClass("cp-cur");
+    set_chessboard_ui($cell, chessboard);
+  }
 })

@@ -4,10 +4,10 @@ export default (weightboard, vacancies) => {
   if (vacancies.length) {
     best_vacancies = vacancies[0];
     max_weight = weightboard[vacancies[0][0]][vacancies[0][1]];
-    vacancies.forEach(d => {
-      if (weightboard[d[0], d[1]] > max_weight) {
-        best_vacancies = vacancies[0];
-        max_weight = weightboard[vacancies[0][0]][vacancies[0][1]];
+    vacancies.forEach((d, i) => {
+      if (weightboard[d[0]][d[1]] > max_weight) {
+        best_vacancies = vacancies[i];
+        max_weight = weightboard[best_vacancies[0]][best_vacancies[1]];
       }
     });
   } else {
